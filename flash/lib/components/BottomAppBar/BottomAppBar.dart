@@ -1,17 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flippoapp/Screens/Post/NewPost.dart';
 import 'package:flippoapp/Screens/Profile/ProfilePage.dart';
 import 'package:flippoapp/components/BottomAppBar/fab_bottom_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'HomePage.dart';
-
+import '../../Screens/Home/HomePage.dart';
+FirebaseUser loggedInUser;
 class BottomAppB extends StatefulWidget {
   @override
   _BottomAppBState createState() => _BottomAppBState();
 }
 
 class _BottomAppBState extends State<BottomAppB> with TickerProviderStateMixin {
+
 
   int _lastSelected =  0;
   final List<Widget> children = [
@@ -28,9 +30,6 @@ class _BottomAppBState extends State<BottomAppB> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flash'),
-      ),
       body: children[_lastSelected],
       bottomNavigationBar: FABBottomAppBar(
         color: Colors.grey,

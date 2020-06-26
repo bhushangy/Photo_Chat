@@ -1,11 +1,14 @@
+import 'package:flippoapp/components/BottomAppBar/BottomAppBar.dart';
+import 'package:flippoapp/components/Colors.dart';
 import 'package:flippoapp/components/reusable_buttons.dart';
-import 'package:flippoapp/constants.dart';
+import 'package:flippoapp/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../SizeConfig.dart';
+import '../../components/SizeConfig.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'loginScreen';
@@ -79,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Padding(
@@ -93,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height:  MediaQuery.of(context).size.width*0.4,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('assets/images/logo.png'),
                   ),
                 ),
               ),
@@ -155,9 +157,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       passControl.clear();
                      // Navigator.pushNamed(context, ChatScreen.id);
                     }
+                    SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                    prefs.setString('email', email);
+                    Colorsys.email = email;
                     setState(() {
                       showSpinner = false;
                     });
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomAppB()));
                   } catch (e) {
                     print(e);
                     String err = e.toString();

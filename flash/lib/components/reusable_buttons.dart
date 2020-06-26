@@ -13,16 +13,18 @@ class reusableButtons extends StatelessWidget {
 Widget build(BuildContext context) {
   return Padding(
     padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height*0.02),
-    child: Material(
-      elevation: 5.0,
-      color: colour,
-      borderRadius: BorderRadius.circular(30.0),
-      child: MaterialButton(
-        onPressed:  onPressed,
-        child: Text(
-         txt,
-          style: TextStyle(
-            color: Colors.white
+    child: InkWell(
+      child: Material(
+        elevation: 5.0,
+        color: colour,
+        borderRadius: BorderRadius.circular(30.0),
+        child: MaterialButton(
+          onPressed:  onPressed,
+          child: Text(
+           txt,
+            style: TextStyle(
+              color: Colors.white
+            ),
           ),
         ),
       ),

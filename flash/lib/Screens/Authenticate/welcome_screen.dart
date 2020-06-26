@@ -36,7 +36,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(animation.value),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.04),
         child: Column(
@@ -48,13 +47,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Hero(
                   tag: 'logo',
                   child: Container(
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('assets/images/logo.png'),
                     height: animation.value * 77,
                   ),
                 ),
                 TypewriterAnimatedTextKit(
                   speed: Duration(milliseconds: 500),
-                  text: ["Flash Chat"],
+                  text: ["Photo Chat"],
                   textStyle: TextStyle(
                     fontSize: MediaQuery.of(context).size.width*0.115,
                     fontWeight: FontWeight.w900,
@@ -69,13 +68,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 colour: Colors.lightBlueAccent,
                 txt: 'Log In',
                 onPressed: () {
-                  Navigator.pushNamed(context, LoginScreen.id);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                 }),
             reusableButtons(
                 colour: Colors.blueAccent,
                 txt: 'Register',
                 onPressed: () {
-                  Navigator.pushNamed(context, RegistrationScreen.id);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>RegistrationScreen()));
                 }),
           ],
         ),
